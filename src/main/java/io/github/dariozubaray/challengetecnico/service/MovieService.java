@@ -5,6 +5,7 @@ import io.github.dariozubaray.challengetecnico.dto.MovieApiResponse;
 import io.github.dariozubaray.challengetecnico.entity.Movie;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +25,8 @@ public record MovieService(MovieClient movieClient) {
                 .collect(Collectors.groupingBy(Movie::getDirector))
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().size() >= minCount)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream()
+                        .sorted(Comparator.comparing(Movie::getTitle))
+                        .collect(Collectors.toList())));
     }
 }

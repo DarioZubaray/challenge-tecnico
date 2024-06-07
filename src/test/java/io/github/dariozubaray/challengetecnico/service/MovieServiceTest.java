@@ -35,9 +35,11 @@ public class MovieServiceTest {
         Movie movie2 = Movie.builder().title("Movie 2").director("Director A").build();
         Movie movie3 = Movie.builder().title("Movie 3").director("Director B").build();
         Movie movie4 = Movie.builder().title("Movie 4").director("Director B").build();
-        Movie movie5 = Movie.builder().title("Movie 5").director("Director B").build();
+        Movie movie5 = Movie.builder().title("Movie 5c").director("Director B").build();
+        Movie movie6 = Movie.builder().title("Movie 5b").director("Director B").build();
+        Movie movie7 = Movie.builder().title("Movie 5a").director("Director B").build();
 
-        List<Movie> movies = List.of(movie1, movie2, movie3, movie4, movie5);
+        List<Movie> movies = List.of(movie1, movie2, movie3, movie4, movie5, movie6, movie7);
 
         MovieApiResponse movieApiResponse = MovieApiResponse.builder().data(movies).build();
 
@@ -49,6 +51,7 @@ public class MovieServiceTest {
 
         // Verify the results
         assertEquals(1, result.size());
-        assertEquals(3, result.get("Director B").size());
+        assertEquals(5, result.get("Director B").size());
+        assertEquals("Movie 5a", result.get("Director B").get(2).getTitle());
     }
 }
