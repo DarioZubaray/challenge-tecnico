@@ -11,3 +11,9 @@ _La API proporcionada devuelve películas lanzadas después de 2010._
 
 - Realizar solicitudes `GET` a `https://directa24-movies.wiremockapi.cloud/api/movies/search?page=<pageNumber>`.
 - Devolver una lista de directores con un número de películas dirigido mayor al umbral especificado, ordenada alfabéticamente.
+
+### Documentacion y pruebas
+
+```
+http://localhost:8080/swagger-ui.html
+```
